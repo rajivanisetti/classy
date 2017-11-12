@@ -107,13 +107,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                Document doc = Jsoup.connect(url).get();
+                Document doc = Jsoup.connect(url)
+                        .header("Accept-Encoding", "gzip, deflate")
+                        .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0")
+                        .timeout(10*1000)
+                        .maxBodySize(0)
+                        .get();
 
-                Log.e("doc", doc.toString());
+                //Log.e("doc", doc.toString());
+
+                longInfo(doc.toString());
 
                 Elements results = doc.select("div.results");
                 Elements courses = doc.select("div.course-result bruinwalk-card show-for-small-only");
-                Log.e("Main", courses.size() + " ");
+                //Log.e("Main", courses.size() + " ");
 
             } catch (IOException e) {
                 Log.e("Main", e.toString());
@@ -121,5 +128,13 @@ public class MainActivity extends AppCompatActivity {
 
             return null;
         }
+    }
+
+    public static void longInfo(String str) {
+        if(str.length() > 4000) {
+            Log.e("main", str.substring(0, 4000));
+            longInfo(str.substring(4000));
+        } else
+            Log.e("main", str);
     }
 }
