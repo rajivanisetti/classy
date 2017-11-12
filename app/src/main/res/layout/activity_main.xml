@@ -9,8 +9,8 @@
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/backgroundclassy"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/backgroundclassy">
 
         <com.daprlabs.aaron.swipedeck.SwipeDeck
             android:id="@+id/swipe_deck"
