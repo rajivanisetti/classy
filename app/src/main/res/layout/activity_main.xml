@@ -1,37 +1,68 @@
-<com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:swipedeck="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/swipeLayout"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.daprlabs.aaron.swipedeck.SwipeDeck
-        android:id="@+id/swipe_deck"
+    <com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:swipedeck="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
-        android:layout_height="480dp"
-        android:padding="50dp"
-        swipedeck:max_visible="3"
-        swipedeck:card_spacing="15dp"
-        swipedeck:swipe_enabled="true"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/backgroundclassy"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="swipe left" />
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="add card" />
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:text="swipe right" />
+        <com.daprlabs.aaron.swipedeck.SwipeDeck
+            android:id="@+id/swipe_deck"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:layout_marginTop="45dp"
+            android:padding="50dp"
+            swipedeck:card_spacing="15dp"
+            swipedeck:max_visible="3"
+            swipedeck:swipe_enabled="true" />
 
-</com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="swipe left" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:text="add card" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:text="swipe right" />
+
+    </com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:fontFamily="@font/leckerli_one"
+        android:inputType="textPersonName"
+        android:text="classy."
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="30dp" />
+
+
+</RelativeLayout>
