@@ -1,5 +1,7 @@
 package com.classy.hoth3.classy;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,9 +10,16 @@ import android.widget.Button;
 
 import com.daprlabs.aaron.swipedeck.SwipeDeck;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    String subject, url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,5 +80,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        subject = intent.getStringExtra("subject");
+
+        subject = "Computer Science";
+        switch(subject) {
+            case "Computer Science":
+                url = "http://www.bruinwalk.com/search/?category=classes&dept=52";
+                break;
+            case "Electrical Engineering":
+                url = "http://www.bruinwalk.com/search/?category=classes&dept=64";
+                break;
+            case "Physics":
+                url = "http://www.bruinwalk.com/search/?category=classes&dept=147";
+                break;
+            case "Scandinavian":
+                url = "http://www.bruinwalk.com/search/?category=classes&dept=164";
+
+        }
+
+        AsyncTaskRunner runner = new AsyncTaskRunner();
+        runner.execute();
+    }
+
+    private class AsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                Document doc = Jsoup.connect(url).get();
+
+                Log.e("doc", doc.toString());
+
+                Elements results = doc.select("div.results");
+                Elements courses = doc.select("div.course-result bruinwalk-card show-for-small-only");
+                Log.e("Main", courses.size() + " ");
+
+            } catch (IOException e) {
+                Log.e("Main", e.toString());
+            }
+
+            return null;
+        }
     }
 }
