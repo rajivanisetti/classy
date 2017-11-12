@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundclassy"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.classy.hoth3.classy.sliders"
     tools:showIn="@layout/activity_sliders">
+
 
     <SeekBar
         android:id="@+id/seekBar_help"
@@ -17,8 +19,14 @@
         android:layout_marginEnd="67dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="22dp"
+        android:backgroundTint="@android:color/background_light"
         android:max="4"
         android:progress="0"
+        android:progressBackgroundTint="@android:color/background_light"
+        android:progressTint="@android:color/background_light"
+        android:secondaryProgressTint="@android:color/background_light"
+        android:thumbTint="@android:color/holo_blue_bright"
+        android:tickMarkTint="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,8 +41,14 @@
         android:layout_marginEnd="67dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="22dp"
+        android:backgroundTint="@android:color/background_light"
         android:max="4"
         android:progress="0"
+        android:progressBackgroundTint="@android:color/background_light"
+        android:progressTint="@android:color/background_light"
+        android:secondaryProgressTint="@android:color/background_light"
+        android:thumbTint="@android:color/holo_blue_bright"
+        android:tickMarkTint="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/seekBar_help"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,8 +63,14 @@
         android:layout_marginEnd="67dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="22dp"
+        android:backgroundTint="@android:color/background_light"
         android:max="4"
         android:progress="0"
+        android:progressBackgroundTint="@android:color/background_light"
+        android:progressTint="@android:color/background_light"
+        android:secondaryProgressTint="@android:color/background_light"
+        android:thumbTint="@android:color/holo_blue_bright"
+        android:tickMarkTint="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/seekBar_clarity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,8 +85,14 @@
         android:layout_marginEnd="67dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="22dp"
+        android:backgroundTint="@android:color/background_light"
         android:max="4"
         android:progress="0"
+        android:progressBackgroundTint="@android:color/background_light"
+        android:progressTint="@android:color/background_light"
+        android:secondaryProgressTint="@android:color/background_light"
+        android:thumbTint="@android:color/holo_blue_bright"
+        android:tickMarkTint="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/seekBar_work"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,8 +107,14 @@
         android:layout_marginEnd="67dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="85dp"
+        android:backgroundTint="@android:color/background_light"
         android:max="4"
-        android:progress="0"
+        android:progress="1"
+        android:progressBackgroundTint="@android:color/background_light"
+        android:progressTint="@android:color/background_light"
+        android:secondaryProgressTint="@android:color/background_light"
+        android:thumbTint="@android:color/holo_blue_bright"
+        android:tickMarkTint="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/seekBar_easy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
@@ -95,6 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="81dp"
         android:text="Overall Rating"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/seekBar_rating"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -104,6 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="81dp"
         android:text="Easiness"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/seekBar_easy"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -113,6 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="81dp"
         android:text="Workload (Heavy to Light)"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/seekBar_work"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -122,6 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="81dp"
         android:text="Clarity"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/seekBar_clarity"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -131,6 +167,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="81dp"
         android:text="Helpfulness"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/seekBar_help"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -152,6 +189,7 @@
         android:layout_marginEnd="150dp"
         android:layout_marginStart="149dp"
         android:text="Choose a Subject:"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/spinner_subject"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -164,7 +202,9 @@
         android:layout_marginEnd="162dp"
         android:layout_marginStart="161dp"
         android:layout_marginTop="31dp"
+        android:background="@android:color/holo_blue_light"
         android:text="Go!"
+        android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar_help" />
@@ -175,6 +215,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Set Minimum Preferences:"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/txt_rating"
         tools:layout_editor_absoluteX="123dp" />
 
