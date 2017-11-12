@@ -18,16 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity
             android:name=".sliders"
             android:label="@string/title_activity_sliders"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-=======
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
->>>>>>> 939f2254739596a663f943302d4ba78dcb454be9
     </application>
 
 </manifest>
