@@ -7,5 +7,5 @@
     tools:context="com.classy.hoth3.classy.sliders">
 
     <include layout="@layout/content_sliders" />
-    
+
 </android.support.design.widget.CoordinatorLayout>
