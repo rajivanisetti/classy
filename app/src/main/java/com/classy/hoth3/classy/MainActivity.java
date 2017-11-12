@@ -12,6 +12,7 @@ import com.daprlabs.aaron.swipedeck.SwipeDeck;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         testData.add("4");
 
         final SwipeDeckAdapter adapter = new SwipeDeckAdapter(testData, this);
-        if(cardStack != null){
+        if (cardStack != null) {
             cardStack.setAdapter(adapter);
         }
         cardStack.setCallback(new SwipeDeck.SwipeDeckCallback() {
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         subject = intent.getStringExtra("subject");
 
         subject = "Computer Science";
-        switch(subject) {
+        switch (subject) {
             case "Computer Science":
                 url = "http://www.bruinwalk.com/search/?category=classes&dept=52";
                 break;
@@ -122,17 +123,33 @@ public class MainActivity extends AppCompatActivity {
                 Document doc = Jsoup.connect(url)
                         .header("Accept-Encoding", "gzip, deflate")
                         .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0")
-                        .timeout(10*1000)
+                        .timeout(10 * 1000)
                         .maxBodySize(0)
                         .get();
 
-                //Log.e("doc", doc.toString());
+                Elements courses = doc.select("div[class=course-result bruinwalk-card hide-for-small-only]");
+                Elements links = courses.select("a[href]:has(h1)");
 
-                longInfo(doc.toString());
+                // for each course (e.g. CS 133)
+                for (Element link : links) {
+                    Document selectedCourse = Jsoup.connect(link.attr("abs:href"))
+                            .timeout(10 * 1000)
+                            .get();
+                    Elements elements = selectedCourse.select("div.hide-for-small-only");
+                    Elements classes = elements.select("table[class=result]");
 
-                Elements results = doc.select("div.results");
-                Elements courses = doc.select("div.course-result bruinwalk-card show-for-small-only");
-                //Log.e("Main", courses.size() + " ");
+                    for (Element selectedClass : classes) {
+                        //Elements profs = selectedClass.select("span[class=prof name]")
+                        String prof = selectedClass.select("span[class=prof name]").first().ownText();
+                        Elements ratings = selectedClass.select("td[class=rating-cell]");
+
+                        // for each rating
+                        for (Element rating : ratings) {
+                            String title = selectedCourse.select("div[class=title circle]").first().ownText();
+                            Log.e(title + " " + prof, rating.ownText() + ": " + rating.select("span.rating").first().ownText());
+                        }
+                    }
+                }
 
             } catch (IOException e) {
                 Log.e("Main", e.toString());
@@ -140,13 +157,5 @@ public class MainActivity extends AppCompatActivity {
 
             return null;
         }
-    }
-
-    public static void longInfo(String str) {
-        if(str.length() > 4000) {
-            Log.e("main", str.substring(0, 4000));
-            longInfo(str.substring(4000));
-        } else
-            Log.e("main", str);
     }
 }
