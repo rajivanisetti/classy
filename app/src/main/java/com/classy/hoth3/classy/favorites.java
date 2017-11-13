@@ -28,10 +28,6 @@ public class favorites extends AppCompatActivity {
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("FavPref", 0);
 
-        favoritesAdapter adapter = new favoritesAdapter(this, favoritesArray);
-        mListView.setAdapter(adapter);
-
-
         String anotherCard = "";
         int i = 0;
         while ( i < 20 )
@@ -43,7 +39,8 @@ public class favorites extends AppCompatActivity {
 
             i++;
         }
-
+        favoritesAdapter adapter = new favoritesAdapter(this, favoritesArray);
+        mListView.setAdapter(adapter);
 
     }
 
@@ -95,19 +92,24 @@ public class favorites extends AppCompatActivity {
             int firstNumber = 0;
             for ( ; firstNumber < len; firstNumber++ ) {
                 c = classinfo.charAt(firstNumber);
-                if ( c < ':' && c > '/' )
+                if ( c == '.' && classinfo.charAt(firstNumber-1) >= '0' && classinfo.charAt(firstNumber-1) <= '9') {
+                    firstNumber -= 1;
                     break;
+                }
             }
+
+            if ( classinfo.length() == 0 || firstNumber + 12 > len)
+                return rowView;
 
             titleTextView.setText( classinfo.substring(0,firstNumber));  /// Class Name and Professor Name
 
-            String ratings = "Easy: " + classinfo.charAt(firstNumber + 1);
-            ratings += " Work: " + classinfo.charAt(firstNumber + 2);
-            ratings += " Clarity: " + classinfo.charAt(firstNumber + 3);
-            ratings += " Helpful: " + classinfo.charAt(firstNumber + 4);
+            String ratings = "Easy: " + classinfo.substring(firstNumber+3, firstNumber+6);
+            ratings += " Work: " + classinfo.substring(firstNumber + 6, firstNumber + 9);
+            ratings += " Clarity: " + classinfo.substring(firstNumber + 9, firstNumber + 12);
+            ratings += " Helpful: " + classinfo.substring(firstNumber + 12, firstNumber + 15);
 
             subtitleTextView.setText(ratings);  // 4 other ratings
-            detailTextView.setText(classinfo.charAt(firstNumber));  // Overall Star Rating
+            detailTextView.setText(classinfo.substring(firstNumber, firstNumber + 3));  // Overall Star Rating
 
             return rowView;
 
