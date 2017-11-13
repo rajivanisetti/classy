@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,20 +8,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/starrating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="2dp"
-            android:layout_marginStart="4dp"
-            android:maxLines="1"
-            android:paddingEnd="4dp"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            tools:text="Detail" />
 
         <RelativeLayout
             android:id="@+id/favorites_list_text_layout"
@@ -33,10 +20,11 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_alignLeft="@+id/subinfo"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/subinfo"
                 android:textSize="18sp"
-                tools:text="Title" />
+                tools:text="Class and Professor" />
 
             <TextView
                 android:id="@+id/subinfo"
@@ -50,6 +38,33 @@
                 android:maxLines="3"
                 android:textSize="16sp"
                 tools:text="Subtitle" />
+
+            <TextView
+                android:id="@+id/starrating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="46dp"
+                android:layout_marginRight="46dp"
+                android:layout_toLeftOf="@id/starView"
+                android:maxLines="1"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                tools:text="Detail" />
+
+            <ImageView
+                android:id="@+id/starView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:tint="@color/star_color"
+                app:srcCompat="@android:drawable/btn_star" />
 
         </RelativeLayout>
 
