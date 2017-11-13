@@ -1,5 +1,6 @@
 package com.classy.hoth3.classy;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.daprlabs.aaron.swipedeck.SwipeDeck;
 
@@ -25,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     final ArrayList<String> mData = new ArrayList<>();
     final ArrayList<Float> mRatings = new ArrayList<>();
     final SwipeDeckAdapter adapter = new SwipeDeckAdapter(mData, mRatings, this);
+
+    ProgressDialog progressDialog;
+
+    int overall, easy, work, clarity, help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         subject = intent.getStringExtra("subject");
 
+        overall = intent.getIntExtra("overall", 0);
+        easy = intent.getIntExtra("easy", 0);
+        work = intent.getIntExtra("work", 0);
+        clarity = intent.getIntExtra("clarity", 0);
+        help = intent.getIntExtra("help", 0);
+
         switch (subject) {
             case "Computer Science":
                 url = "http://www.bruinwalk.com/search/?category=classes&dept=52";
@@ -97,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
                 url = "http://www.bruinwalk.com/search/?category=classes&dept=164";
 
         }
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Stay classy while we load...");
+        progressDialog.show();
 
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute();
@@ -124,23 +141,51 @@ public class MainActivity extends AppCompatActivity {
                     Elements elements = selectedCourse.select("div.hide-for-small-only");
                     Elements classes = elements.select("table[class=result]");
 
+                    boolean add;
+
                     for (Element selectedClass : classes) {
-                        //Elements profs = selectedClass.select("span[class=prof name]")
                         String prof = selectedClass.select("span[class=prof name]").first().ownText();
                         Elements ratings = selectedClass.select("td[class=rating-cell]");
 
                         String title = selectedCourse.select("div[class=title circle]").first().ownText();
                         String cardInfo = title + "/" + prof + "/";
 
-                        mData.add(cardInfo);
+                        add = true;
 
                         // for each rating
                         for (Element rating : ratings) {
-                            Log.e(title + " " + prof, rating.ownText() + ": " + rating.select("span.rating").first().ownText());
-                            //cardInfo += rating.ownText() + "/" + rating.select("span.rating").first().ownText();
+                            String name = rating.ownText();
                             String r = rating.select("span.rating").first().ownText();
-                            mRatings.add(r.equals("N/A") ? -1 : Float.parseFloat(r));
+                            Float f = r.equals("N/A") ? -1 : Float.parseFloat(r);
+
+                            switch (name) {
+                                case "Overall":
+                                    if (f < (overall - 0.2))
+                                        add = false;
+                                    break;
+                                case "Easiness":
+                                    if (f < (easy - 0.2))
+                                        add = false;
+                                    break;
+                                case "Workload":
+                                    if (f < (work - 0.2))
+                                        add = false;
+                                    break;
+                                case "Clarity":
+                                    if (f < (clarity- 0.2))
+                                        add = false;
+                                    break;
+                                case "Helpfulness":
+                                    if (f < (help- 0.2))
+                                        add = false;
+                                    break;
+                            }
+
+                            if (add)
+                                mRatings.add(f);
                         }
+                        if (add)
+                            mData.add(cardInfo);
                     }
                 }
 
@@ -154,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             adapter.notifyDataSetChanged();
+            progressDialog.hide();
         }
     }
 }

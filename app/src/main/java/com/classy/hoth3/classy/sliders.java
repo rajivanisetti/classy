@@ -67,16 +67,13 @@ public class sliders extends AppCompatActivity {
                     Intent nextIntent = new Intent(getBaseContext(), MainActivity.class);
 
                     //Create bundle to pass rating values and subject to next activity
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("overall", rating);
-                    bundle.putInt("easy", easy);
-                    bundle.putInt("work", work);
-                    bundle.putInt("clarity", clarity);
-                    bundle.putInt("help", help);
-                    bundle.putString("subject", subject_to_pass);
+                    nextIntent.putExtra("overall", rating);
+                    nextIntent.putExtra("easy", easy);
+                    nextIntent.putExtra("work", work);
+                    nextIntent.putExtra("clarity", clarity);
+                    nextIntent.putExtra("help", help);
+                    nextIntent.putExtra("subject", subject_to_pass);
 
-                    //Add the bundle to the intent
-                    nextIntent.putExtras(bundle);
                     startActivity(nextIntent);
                 }
            }
