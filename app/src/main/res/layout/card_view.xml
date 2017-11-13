@@ -23,10 +23,16 @@
             android:layout_marginTop="16dp">
 
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/overall"
-                android:text="Overall" />
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:text="Overall"
+                android:textStyle="bold"
+                android:textSize="20sp" />
 
             <RatingBar
                 android:id="@+id/overall"
@@ -43,8 +49,9 @@
                 android:id="@+id/easy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/overall"
-                android:layout_centerHorizontal="true"
+                android:layout_alignLeft="@+id/overall"
+                android:layout_alignStart="@+id/overall"
+                android:layout_below="@+id/overall"
                 android:isIndicator="true"
                 android:progressTint="@color/star_color"
                 android:scaleX="0.75"
@@ -54,8 +61,9 @@
                 android:id="@+id/work"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/easy"
-                android:layout_centerHorizontal="true"
+                android:layout_alignLeft="@+id/easy"
+                android:layout_alignStart="@+id/easy"
+                android:layout_below="@+id/easy"
                 android:isIndicator="true"
                 android:progressTint="@color/star_color"
                 android:scaleX="0.75"
@@ -65,8 +73,9 @@
                 android:id="@+id/clarity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/work"
-                android:layout_centerHorizontal="true"
+                android:layout_alignLeft="@+id/work"
+                android:layout_alignStart="@+id/work"
+                android:layout_below="@+id/work"
                 android:isIndicator="true"
                 android:progressTint="@color/star_color"
                 android:scaleX="0.75"
@@ -75,13 +84,66 @@
             <RatingBar
                 android:id="@+id/help"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/clarity"
-                android:layout_centerHorizontal="true"
+                android:layout_height="60dp"
+                android:layout_alignLeft="@+id/clarity"
+                android:layout_alignStart="@+id/clarity"
+                android:layout_below="@+id/clarity"
                 android:isIndicator="true"
                 android:progressTint="@color/star_color"
                 android:scaleX="0.75"
                 android:scaleY="0.75" />
+
+            <TextView
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/easy"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:textStyle="bold"
+                android:inputType="textPersonName"
+                android:text="Easiness"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:fontFamily="sans-serif"
+                android:text="Work"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/help"
+                android:layout_marginBottom="13dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:text="Clarity"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/clarity"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="13dp"
+                android:text="Helpfulness"
+                android:textStyle="bold"
+                android:textSize="20sp" />
         </RelativeLayout>
 
         <LinearLayout
@@ -112,10 +174,11 @@
         <TextView
             android:id="@+id/sample_text"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="125dp"
+            android:layout_marginHorizontal="8dp"
             android:gravity="center_horizontal"
             android:text="Sample Text"
-            android:textSize="40dp" />
+            android:textSize="35dp" />
 
     </LinearLayout>
 
