@@ -21,37 +21,18 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 4000;
-
     String subject, url;
+    final ArrayList<String> mData = new ArrayList<>();
+    final ArrayList<Float> mRatings = new ArrayList<>();
+    final SwipeDeckAdapter adapter = new SwipeDeckAdapter(mData, mRatings, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run(){
-                Intent homeIntent = new Intent(MainActivity.this, SplashActivity.class);
-                startActivity(homeIntent);
-                finish();
-            }
-
-        }, SPLASH_TIME_OUT);
-
-        //setContentView(R.layout.activity_main);
-
 
         final SwipeDeck cardStack = (SwipeDeck) findViewById(R.id.swipe_deck);
 
-        final ArrayList<String> testData = new ArrayList<>();
-        testData.add("0");
-        testData.add("1");
-        testData.add("2");
-        testData.add("3");
-        testData.add("4");
-
-        final SwipeDeckAdapter adapter = new SwipeDeckAdapter(testData, this);
         if (cardStack != null) {
             cardStack.setAdapter(adapter);
         }
@@ -91,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                testData.add("a sample string.");
+                mData.add("a sample string.");
                 adapter.notifyDataSetChanged();
             }
         });
@@ -158,10 +139,17 @@ public class MainActivity extends AppCompatActivity {
                         String prof = selectedClass.select("span[class=prof name]").first().ownText();
                         Elements ratings = selectedClass.select("td[class=rating-cell]");
 
+                        String title = selectedCourse.select("div[class=title circle]").first().ownText();
+                        String cardInfo = title + "/" + prof + "/";
+
+                        mData.add(cardInfo);
+
                         // for each rating
                         for (Element rating : ratings) {
-                            String title = selectedCourse.select("div[class=title circle]").first().ownText();
                             Log.e(title + " " + prof, rating.ownText() + ": " + rating.select("span.rating").first().ownText());
+                            //cardInfo += rating.ownText() + "/" + rating.select("span.rating").first().ownText();
+                            String r = rating.select("span.rating").first().ownText();
+                            mRatings.add(r.equals("N/A") ? -1 : Float.parseFloat(r));
                         }
                     }
                 }
@@ -171,6 +159,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            adapter.notifyDataSetChanged();
         }
     }
 }

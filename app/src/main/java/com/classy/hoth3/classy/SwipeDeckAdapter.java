@@ -6,20 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class SwipeDeckAdapter extends BaseAdapter {
 
     private List<String> data;
+    private List<Float> ratings;
     private Context context;
 
-    public SwipeDeckAdapter(List<String> data, Context context) {
+    public SwipeDeckAdapter(List<String> data, List<Float> ratings, Context context) {
         this.data = data;
+        this.ratings = ratings;
         this.context = context;
     }
 
@@ -48,10 +48,41 @@ public class SwipeDeckAdapter extends BaseAdapter {
             v = inflater.inflate(R.layout.card_view, parent, false);
         }
 
-        ImageView imageView = (ImageView) v.findViewById(R.id.offer_image);
-        Picasso.with(context).load(R.drawable.ucla).fit().centerCrop().into(imageView);
+        //ImageView imageView = (ImageView) v.findViewById(R.id.offer_image);
+        //Picasso.with(context).load(R.drawable.ucla).fit().centerCrop().into(imageView);
+
+        int ratingPosition = position * 5;
+
+        RatingBar overall = v.findViewById(R.id.overall);
+        RatingBar easy = v.findViewById(R.id.easy);
+        RatingBar work = v.findViewById(R.id.work);
+        RatingBar clarity = v.findViewById(R.id.clarity);
+        RatingBar help = v.findViewById(R.id.help);
+
+        overall.setMax(5);
+        overall.setStepSize(0.1f);
+        overall.setRating(ratings.get(ratingPosition));
+        //overall.
+        // overall.setBackgroundColor();
+
+        easy.setMax(5);
+        easy.setStepSize(0.1f);
+        easy.setRating(ratings.get(ratingPosition + 1));
+
+        work.setMax(5);
+        work.setStepSize(0.1f);
+        work.setRating(ratings.get(ratingPosition + 2));
+
+        clarity.setMax(5);
+        clarity.setStepSize(0.1f);
+        clarity.setRating(ratings.get(ratingPosition + 3));
+
+        help.setMax(5);
+        help.setStepSize(0.1f);
+        help.setRating(ratings.get(ratingPosition + 4));
+
         TextView textView = (TextView) v.findViewById(R.id.sample_text);
-        String item = (String)getItem(position);
+        String item = (String) getItem(position);
         textView.setText(item);
 
         v.setOnClickListener(new View.OnClickListener() {
