@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         Elements ratings = selectedClass.select("td[class=rating-cell]");
 
                         String title = selectedCourse.select("div[class=title circle]").first().ownText();
-                        String cardInfo = title + "/" + prof + "/";
+                        String cardInfo = title + "\n" + prof;
 
                         add = true;
 
