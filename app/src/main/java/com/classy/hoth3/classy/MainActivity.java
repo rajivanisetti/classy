@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void cardSwipedRight(long positionInAdapter) {
                 Log.i("MainActivity", "card was swiped right, position in adapter: " + positionInAdapter);
-                Log.e("index", cardStack.getAdapterIndex() + "");
-                int index = cardStack.getAdapterIndex();
+                int index = (int) positionInAdapter;
                 String toSave = "";
                 toSave += mData.get(index);
                 index = index * 5;
