@@ -33,6 +33,18 @@ public class sliders extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
+        View mDecorView = getWindow().getDecorView();
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        mDecorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
+
         spinner = (Spinner)findViewById(R.id.spinner_subject);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(sliders.this, android.R.layout.simple_spinner_dropdown_item, subjects);
 
@@ -55,12 +67,12 @@ public class sliders extends AppCompatActivity {
         goBtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (subject_to_pass == "") // if no subject selected, make toast and do nothing
+                if (subject_to_pass.equals("")) // if no subject selected, make toast and do nothing
                     ToastIfNothingSelected();
                 else  // else go to next activity
                 {
                     ////// TO DO
-                    //Intent nextIntent = new Intent(this, sliders.class);
+                    Intent nextIntent = new Intent(getBaseContext(), MainActivity.class);
 
                     //Create bundle to pass rating values and subject to next activity
                     Bundle bundle = new Bundle();
@@ -70,9 +82,10 @@ public class sliders extends AppCompatActivity {
                     bundle.putInt("clarity", clarity);
                     bundle.putInt("help", help);
                     bundle.putString("subject", subject_to_pass);
+
                     //Add the bundle to the intent
-                    //nextIntent.putExtras(bundle);
-                    //startActivity(nextIntent);
+                    nextIntent.putExtras(bundle);
+                    startActivity(nextIntent);
 
                 }
            }
