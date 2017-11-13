@@ -38,6 +38,16 @@ public class sliders extends AppCompatActivity {
         spinner = (Spinner)findViewById(R.id.spinner_subject);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(sliders.this, android.R.layout.simple_spinner_dropdown_item, subjects);
 
+        FloatingActionButton fab = findViewById(R.id.favBtn);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), favorites.class);
+                startActivity(intent);
+            }
+        });
+
         //spinner for selecting a Subject from drop down list
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
