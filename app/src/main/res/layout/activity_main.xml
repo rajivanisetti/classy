@@ -5,13 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+
+        <com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:swipedeck="http://schemas.android.com/apk/res-auto"
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/backgroundclassy"
         android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_above="@+id/editText2"
+                android:layout_alignEnd="@+id/editText2"
+                android:layout_alignRight="@+id/editText2"
+                android:layout_marginTop="170dp"
+                android:gravity="center"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="60dp">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:paddingTop="135dp"
+                    android:text="Nothing more to see here!"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    tools:ignore="HardcodedText" />
+
+            </RelativeLayout>
+
+
 
         <com.daprlabs.aaron.swipedeck.SwipeDeck
             android:id="@+id/swipe_deck"
@@ -21,7 +56,9 @@
             android:padding="50dp"
             swipedeck:card_spacing="15dp"
             swipedeck:max_visible="3"
-            swipedeck:swipe_enabled="true" />
+            swipedeck:swipe_enabled="true" >
+
+        </com.daprlabs.aaron.swipedeck.SwipeDeck>
 
         <Button
             android:id="@+id/button"
@@ -41,7 +78,29 @@
             android:layout_marginEnd="12dp"
             android:text="Fasho!" />
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/favBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="305dp"
+                android:layout_marginRight="40dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:src="@drawable/ic_favorite_white_24dp" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/favBtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="305dp"
+                android:layout_marginLeft="40dp"
+                android:backgroundTint="@android:color/holo_red_light"
+                android:src="@drawable/iconslider" />
+
     </com.daprlabs.aaron.swipedeck.layouts.SwipeFrameLayout>
+
+    </FrameLayout>
 
     <EditText
         android:id="@+id/editText2"
