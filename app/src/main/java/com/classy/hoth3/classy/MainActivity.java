@@ -46,14 +46,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void cardSwipedLeft(long positionInAdapter) {
                 Log.i("MainActivity", "card was swiped left, position in adapter: " + positionInAdapter);
+                Log.e("index", cardStack.getAdapterIndex() + "");
             }
 
             @Override
             public void cardSwipedRight(long positionInAdapter) {
                 Log.i("MainActivity", "card was swiped right, position in adapter: " + positionInAdapter);
-
+                Log.e("index", cardStack.getAdapterIndex() + "");
             }
         });
+
 
         cardStack.setLeftImage(R.id.left_image);
         cardStack.setRightImage(R.id.right_image);
@@ -63,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cardStack.swipeTopCardLeft(180);
+                cardStack.swipeTopCardLeft(240);
             }
         });
         Button btn2 = (Button) findViewById(R.id.button2);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cardStack.swipeTopCardRight(180);
+                cardStack.swipeTopCardRight(240);
             }
         });
 
