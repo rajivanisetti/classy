@@ -33,17 +33,7 @@ public class sliders extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
-        View mDecorView = getWindow().getDecorView();
-        // Set the IMMERSIVE flag.
-        // Set the content to appear under the system bars so that the content
-        // doesn't resize when the system bars hide and show.
-        mDecorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
+        fullScreen();
 
         spinner = (Spinner)findViewById(R.id.spinner_subject);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(sliders.this, android.R.layout.simple_spinner_dropdown_item, subjects);
@@ -55,11 +45,13 @@ public class sliders extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 subject_to_pass = parent.getItemAtPosition(position).toString();
+                fullScreen();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 ToastIfNothingSelected();
+                fullScreen();
             }
         });
 
@@ -86,7 +78,6 @@ public class sliders extends AppCompatActivity {
                     //Add the bundle to the intent
                     nextIntent.putExtras(bundle);
                     startActivity(nextIntent);
-
                 }
            }
         });
@@ -144,4 +135,17 @@ public class sliders extends AppCompatActivity {
                 LENGTH_SHORT).show();
     }
 
+    void fullScreen() {
+        View mDecorView = getWindow().getDecorView();
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        mDecorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
+    }
 }

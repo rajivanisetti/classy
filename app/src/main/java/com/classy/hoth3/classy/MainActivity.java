@@ -68,15 +68,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btn3 = (Button) findViewById(R.id.button3);
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mData.add("a sample string.");
-                adapter.notifyDataSetChanged();
-            }
-        });
-
         View mDecorView = getWindow().getDecorView();
         // Set the IMMERSIVE flag.
         // Set the content to appear under the system bars so that the content
@@ -92,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         subject = intent.getStringExtra("subject");
 
-        subject = "Computer Science";
         switch (subject) {
             case "Computer Science":
                 url = "http://www.bruinwalk.com/search/?category=classes&dept=52";

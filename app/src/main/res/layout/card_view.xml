@@ -23,17 +23,21 @@
             android:layout_marginTop="16dp">
 
             <TextView
-                android:layout_toLeftOf="@id/overall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Overall"/>
+                android:layout_toLeftOf="@id/overall"
+                android:text="Overall" />
 
             <RatingBar
                 android:id="@+id/overall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:isIndicator="true" />
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:isIndicator="true"
+                android:progressTint="@color/star_color"
+                android:scaleX="0.75"
+                android:scaleY="0.75" />
 
             <RatingBar
                 android:id="@+id/easy"
@@ -41,7 +45,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/overall"
                 android:layout_centerHorizontal="true"
-                android:isIndicator="true" />
+                android:isIndicator="true"
+                android:progressTint="@color/star_color"
+                android:scaleX="0.75"
+                android:scaleY="0.75" />
 
             <RatingBar
                 android:id="@+id/work"
@@ -49,7 +56,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/easy"
                 android:layout_centerHorizontal="true"
-                android:isIndicator="true" />
+                android:isIndicator="true"
+                android:progressTint="@color/star_color"
+                android:scaleX="0.75"
+                android:scaleY="0.75" />
 
             <RatingBar
                 android:id="@+id/clarity"
@@ -57,7 +67,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/work"
                 android:layout_centerHorizontal="true"
-                android:isIndicator="true" />
+                android:isIndicator="true"
+                android:progressTint="@color/star_color"
+                android:scaleX="0.75"
+                android:scaleY="0.75" />
 
             <RatingBar
                 android:id="@+id/help"
@@ -65,7 +78,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/clarity"
                 android:layout_centerHorizontal="true"
-                android:isIndicator="true" />
+                android:isIndicator="true"
+                android:progressTint="@color/star_color"
+                android:scaleX="0.75"
+                android:scaleY="0.75" />
         </RelativeLayout>
 
         <LinearLayout

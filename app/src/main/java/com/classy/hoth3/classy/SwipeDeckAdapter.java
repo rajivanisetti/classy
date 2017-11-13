@@ -1,6 +1,7 @@
 package com.classy.hoth3.classy;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,8 +63,6 @@ public class SwipeDeckAdapter extends BaseAdapter {
         overall.setMax(5);
         overall.setStepSize(0.1f);
         overall.setRating(ratings.get(ratingPosition));
-        //overall.
-        // overall.setBackgroundColor();
 
         easy.setMax(5);
         easy.setStepSize(0.1f);
