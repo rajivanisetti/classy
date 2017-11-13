@@ -41,7 +41,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp"
                 android:isIndicator="true"
-                android:progressTint="@color/star_color"
+                android:theme="@style/RatingBar"
                 android:scaleX="0.75"
                 android:scaleY="0.75" />
 
@@ -53,7 +53,7 @@
                 android:layout_alignStart="@+id/overall"
                 android:layout_below="@+id/overall"
                 android:isIndicator="true"
-                android:progressTint="@color/star_color"
+                android:theme="@style/RatingBar"
                 android:scaleX="0.75"
                 android:scaleY="0.75" />
 
@@ -65,7 +65,7 @@
                 android:layout_alignStart="@+id/easy"
                 android:layout_below="@+id/easy"
                 android:isIndicator="true"
-                android:progressTint="@color/star_color"
+                android:theme="@style/RatingBar"
                 android:scaleX="0.75"
                 android:scaleY="0.75" />
 
@@ -77,7 +77,7 @@
                 android:layout_alignStart="@+id/work"
                 android:layout_below="@+id/work"
                 android:isIndicator="true"
-                android:progressTint="@color/star_color"
+                android:theme="@style/RatingBar"
                 android:scaleX="0.75"
                 android:scaleY="0.75" />
 
@@ -89,7 +89,7 @@
                 android:layout_alignStart="@+id/clarity"
                 android:layout_below="@+id/clarity"
                 android:isIndicator="true"
-                android:progressTint="@color/star_color"
+                android:theme="@style/RatingBar"
                 android:scaleX="0.75"
                 android:scaleY="0.75" />
 
