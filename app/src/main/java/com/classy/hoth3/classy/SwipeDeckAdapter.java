@@ -52,6 +52,8 @@ public class SwipeDeckAdapter extends BaseAdapter {
         //ImageView imageView = (ImageView) v.findViewById(R.id.offer_image);
         //Picasso.with(context).load(R.drawable.ucla).fit().centerCrop().into(imageView);
 
+        TextView textView = (TextView) v.findViewById(R.id.sample_text);
+
         int ratingPosition = position * 5;
 
         RatingBar overall = v.findViewById(R.id.overall);
@@ -80,7 +82,6 @@ public class SwipeDeckAdapter extends BaseAdapter {
         help.setStepSize(0.1f);
         help.setRating(ratings.get(ratingPosition + 4));
 
-        TextView textView = (TextView) v.findViewById(R.id.sample_text);
         String item = (String) getItem(position);
         textView.setText(item);
 
