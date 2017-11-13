@@ -1,9 +1,17 @@
 package com.classy.hoth3.classy;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("" + favoritesSaved, toSave);
                 favoritesSaved += 1;
                 editor.commit();
+
+                notifyUser(toSave);
             }
         });
 
@@ -222,5 +232,32 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             progressDialog.hide();
         }
+    }
+
+    public void notifyUser(String msg) {
+        final String NOTIFICATION_CHANNEL_ID = "4655";
+        // Notification Channel
+        CharSequence channelName = "classy.";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "classy.", importance);
+        notificationChannel.enableLights(true);
+        notificationChannel.setLightColor(Color.WHITE);
+        notificationChannel.enableVibration(true);
+        notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.createNotificationChannel(notificationChannel);
+
+        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setSmallIcon(R.drawable.bowtie)
+                .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+                .setSound(null)
+                .setContentTitle("classy.")
+                .setContentText(msg)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(false);
+
+        notificationManager.notify(420, builder.build());
     }
 }
