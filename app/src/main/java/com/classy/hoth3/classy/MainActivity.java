@@ -30,6 +30,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import android.content.SharedPreferences;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,6 +84,24 @@ public class MainActivity extends AppCompatActivity {
                 editor.commit();
 
                 notifyUser(toSave);
+            }
+        });
+
+        FloatingActionButton fab = findViewById(R.id.favBtn);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), favorites.class);
+                startActivity(intent);
+            }
+        });
+
+        FloatingActionButton fab2 = findViewById(R.id.favBtn2);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), sliders.class);
+                startActivity(intent);
             }
         });
 
@@ -231,6 +250,9 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             adapter.notifyDataSetChanged();
             progressDialog.hide();
+
+            TextView tv = findViewById(R.id.textView6);
+            tv.setVisibility(View.VISIBLE);
         }
     }
 
@@ -242,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
         NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "classy.", importance);
         notificationChannel.enableLights(true);
         notificationChannel.setLightColor(Color.WHITE);
-        notificationChannel.enableVibration(true);
+        notificationChannel.enableVibration(false);
         notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
 
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
