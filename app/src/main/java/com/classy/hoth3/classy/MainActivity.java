@@ -20,6 +20,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import android.content.SharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     int overall, easy, work, clarity, help;
+/**
+    SharedPreferences pref = getApplicationContext().getSharedPreferences("FavPref", 0); // 0 - for private mode
+    SharedPreferences.Editor editor = pref.edit();
+**/
+    int favoritesSaved = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final SwipeDeck cardStack = (SwipeDeck) findViewById(R.id.swipe_deck);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("FavPref", 0); // 0 - for private mode
+        final SharedPreferences.Editor editor = pref.edit();
 
         if (cardStack != null) {
             cardStack.setAdapter(adapter);
@@ -53,6 +62,17 @@ public class MainActivity extends AppCompatActivity {
             public void cardSwipedRight(long positionInAdapter) {
                 Log.i("MainActivity", "card was swiped right, position in adapter: " + positionInAdapter);
                 Log.e("index", cardStack.getAdapterIndex() + "");
+                int index = cardStack.getAdapterIndex();
+                String toSave = "";
+                toSave += mData.get(index);
+                index = index * 5;
+                for ( int i = 0; i < 5; i++ )
+                {
+                    toSave += mRatings.get(index);
+                }
+                editor.putString("" + favoritesSaved, toSave);
+                favoritesSaved += 1;
+                editor.commit();
             }
         });
 
