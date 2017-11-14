@@ -30,11 +30,12 @@ public class favorites extends AppCompatActivity {
 
         String anotherCard = "";
         int i = 0;
-        while ( i < 20 )
+        int numSaved = pref.getInt("NumSaved", 0);
+        while ( i < numSaved && i < 30 )
         {
             anotherCard = pref.getString("" + i, null);
             if (anotherCard == null)
-                break;
+                continue;
             favoritesArray.add(anotherCard);
 
             i++;

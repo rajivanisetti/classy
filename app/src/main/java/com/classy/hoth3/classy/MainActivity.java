@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         final SwipeDeck cardStack = (SwipeDeck) findViewById(R.id.swipe_deck);
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("FavPref", 0); // 0 - for private mode
+        final SharedPreferences pref = getApplicationContext().getSharedPreferences("FavPref", 0); // 0 - for private mode
         final SharedPreferences.Editor editor = pref.edit();
 
         if (cardStack != null) {
@@ -79,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
                 {
                     toSave += mRatings.get(index);
                 }
-                editor.putString("" + favoritesSaved, toSave);
+                int numSaved = pref.getInt("NumSaved", 0);
+                editor.putInt("NumSaved", (numSaved+1));
+
+                editor.putString("" + numSaved, toSave);
                 favoritesSaved += 1;
                 editor.commit();
 
